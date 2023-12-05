@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="box"></div>
+
+    <!--官网： https://aui.github.io/art-template/zh-cn/ -->
+
+
+    <script src="./js/template-web.js"></script>
+    <script type="text/html" id="temp_one">
+       <!-- 2.输出值-->
+        {{value}}<br />
+    {{data}}<br>
+    {{arr}}<br>
+
+    <!-- for循环 -->
+    {{each arr}}
+    <li>{{$value.name}}--{{$value.age}}--{{$index}}</li>
+    {{/each}}
+
+    <!-- if判断 -->
+    {{if sex == "male"}}
+    男
+    {{else if sex=="female"}}女
+    {{else}}未知
+    {{/if}}<br>
+
+    <!-- 加入@进行html转义 -->
+    {{conHtml}}<br>
+    {{@conHtml}}
+
+    <!-- 获取数据源所有数据 -->
+    {{$data}}
+
+    </script>
+
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>
