@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        /**
+         * 防抖函数
+        */
+        function debounce(func, during = 300) {
+            let timer = null;
+            return () => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func();
+                }, during);
+            }
+        }
+
+        // 执行函数
+        const logFun = () => {
+            console.log(111)
+        }
+
+
+        const debounceFun = debounce(logFun, 1000); // 返回的是个箭头函数
+        window.onresize = debounceFun; //执行箭头函数
+
+    </script>
+</body>
+
+</html>

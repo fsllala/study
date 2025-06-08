@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>button</button>
+
+
+    <script>
+        /* 防抖函数
+
+        function debounce(func, during = 300) {
+            let timer = null;
+            return () => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func();
+                }, during);
+            }
+        }
+
+        // 执行函数
+        const logFun = () => {
+            console.log(111)
+        }
+
+        const debounceFun = debounce(logFun, 1000); // 返回的是个箭头函数
+        window.onresize = debounceFun; //执行箭头函数
+
+        1. this 指向,这里 32 行的debounceFun this指向要和 22行的this指向 一致
+         分析：
+         32行的debounceFun 其实就是 一个箭头函数,箭头函数没有自己的this,所以需要改成普通函数;
+         改为普通函数之后,21行的定时器里面箭头函数没有自己的this，外部作用域查找this,也就是我们刚改完之后的普通函数的this;
+         此时：定时器内部this与外部修改完之后的普通函数this一致；但是和22行的func()没有任何关系，此时需要apply(this)；使得22行的this指向 一致；
+        */
+
+
+        // 确定 this 与 参数
+        function debounce(func, during = 300) {
+            let timer = null;
+            return function (...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.apply(this, args);
+                }, during)
+            }
+        }
+
+
+        // 执行函数
+        const logFun = (name,age,sex) => {
+            console.log("this",this);
+            console.log(name,age,sex);
+        }
+
+        const debounceFun = debounce(logFun, 1000);//确定debounceFun的this与49行执行函数的this一致;
+
+
+        // const btn = document.querySelector('button');
+        // btn.onclick = debounceFun;
+        debounceFun("fsllala",18,1)
+    </script>
+</body>
+
+</html>

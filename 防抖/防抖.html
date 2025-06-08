@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+<div></div>
+
+  <script>
+    /**防抖
+     * 1.频繁调用某个函数
+     * 2.造成性能问题
+     * 3.需要的结果以最后一次为准
+    */
+
+    let timer = null;
+    window.onresize = () => {
+
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        console.log(111)
+      }, 300);
+
+    }
+
+
+  </script>
+</body>
+
+</html>
